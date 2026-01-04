@@ -86,7 +86,7 @@ export default function HomePage() {
               Nuestra misión es rescatar, rehabilitar y encontrar hogares
             </h2>
             <p className="text-pretty mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
-              En Saltillo, Jalisco, trabajamos día a día para darles una segunda oportunidad a los perritos que más lo
+              En El Salto, Jalisco, trabajamos día a día para darles una segunda oportunidad a los perritos que más lo
               necesitan.
             </p>
           </div>

@@ -22,7 +22,7 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Angeles Adopción - Rescate y Adopción de Perros en Jalisco",
   description:
-    "Rescate y rehabilitación de perritos en Saltillo, Jalisco. Más de 65 perros esperan encontrar un hogar lleno de amor. Adopta, dona o ayuda a cambiar vidas.",
+    "Rescate y rehabilitación de perritos en El Salto, Jalisco. Más de 65 perros esperan encontrar un hogar lleno de amor. Adopta, dona o ayuda a cambiar vidas.",
   generator: "v0.app",
   icons: {
     icon: [

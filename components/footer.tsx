@@ -13,7 +13,7 @@ export function Footer() {
               <span>Angeles Adopción</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Rescate y rehabilitación de perritos en Saltillo, Jalisco. Cambiando vidas desde 2020.
+              Rescate y rehabilitación de perritos en El Salto, Jalisco. Cambiando vidas desde 2020.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Saltillo, Jalisco</span>
+                <span>El Salto, Jalisco</span>
               </li>
               <li className="flex items-center gap-2">
                 <Instagram className="h-4 w-4" />

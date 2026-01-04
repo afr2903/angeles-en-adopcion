@@ -19,7 +19,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Mediano",
       temperament: ["Juguetón", "Cariñoso"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: [
         "Energía compatible con tu estilo de vida",
         "Bueno con niños y otros perros",
@@ -34,7 +34,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Pequeño",
       temperament: ["Tranquila", "Dulce"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: [
         "Personalidad tranquila perfecta para ti",
         "Tamaño ideal para tu espacio",
@@ -49,7 +49,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Pequeño",
       temperament: ["Energética", "Juguetona"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: ["Joven y adaptable", "Personalidad juguetona", "Compatible con tu experiencia"],
     },
   ]

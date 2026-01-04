@@ -55,7 +55,7 @@ export default function ContactoPage() {
                       </div>
                       <div>
                         <div className="font-semibold">Ubicación</div>
-                        <div className="text-muted-foreground">Saltillo, Jalisco, México</div>
+                        <div className="text-muted-foreground">El Salto, Jalisco, México</div>
                       </div>
                     </div>
 

@@ -20,7 +20,7 @@ const mockDogs = [
     gender: "Macho",
     temperament: ["Juguetón", "Cariñoso"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: false,
   },
   {
@@ -31,7 +31,7 @@ const mockDogs = [
     gender: "Hembra",
     temperament: ["Tranquila", "Dulce"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: true,
   },
   {
@@ -42,7 +42,7 @@ const mockDogs = [
     gender: "Macho",
     temperament: ["Protector", "Leal"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: false,
   },
   {
@@ -53,7 +53,7 @@ const mockDogs = [
     gender: "Hembra",
     temperament: ["Energética", "Juguetona"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: false,
   },
   {
@@ -64,7 +64,7 @@ const mockDogs = [
     gender: "Macho",
     temperament: ["Tranquilo", "Amigable"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: true,
   },
   {
@@ -75,7 +75,7 @@ const mockDogs = [
     gender: "Hembra",
     temperament: ["Cariñosa", "Sociable"],
     image: "/placeholder.svg?height=400&width=400",
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: false,
   },
 ]

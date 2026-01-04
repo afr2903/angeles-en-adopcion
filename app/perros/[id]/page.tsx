@@ -25,7 +25,7 @@ const mockDogs = [
       "/placeholder.svg?height=600&width=600",
       "/placeholder.svg?height=600&width=600",
     ],
-    location: "Saltillo, Jalisco",
+    location: "El Salto, Jalisco",
     urgent: false,
     story:
       "Romeo llegó a nosotros hace 6 meses después de ser rescatado de la calle. A pesar de su pasado difícil, es un perrito increíblemente amoroso que adora jugar con otros perros y recibir cariño de las personas. Le encanta correr en el jardín y es muy obediente.",
