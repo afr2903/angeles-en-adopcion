@@ -33,7 +33,7 @@ Teléfono: ${phone}
 Mensaje: ${message}`
 
     // Open WhatsApp
-    window.open(`https://wa.me/526532850961?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
+    window.open(`https://wa.me/525532850961?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
     setSubmitted(true)
   }
 

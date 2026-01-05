@@ -24,7 +24,7 @@ export default function ContactoPage() {
 
                   <div className="space-y-4">
                     <a
-                      href="https://wa.me/526532850961"
+                      href="https://wa.me/525532850961"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-start gap-4 rounded-lg border p-4 transition-colors hover:bg-muted"
@@ -55,7 +55,7 @@ export default function ContactoPage() {
                       </div>
                       <div>
                         <div className="font-semibold">Ubicación</div>
-                        <div className="text-muted-foreground">Saltillo, Jalisco, México</div>
+                        <div className="text-muted-foreground">El Salto, Jalisco, México</div>
                       </div>
                     </div>
 

@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <picture>
+    <img alt="Angeles en Adopcion logo" src="https://angelesenadopcion.com/images/logo.png" width="150" height="150" style="max-width: 100%;">
+  </picture>
+  <br/>
+  <br/>
+</p>
 
-## Getting Started
 
-First, run the development server:
+# Ángeles en Adopción 🐾
+
+Website for a pet shelter "Ángeles en Adopción" at El Salto, Jalisco, México.
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Styles:** Tailwind CSS 4
+- **DB:** Supabase (PostgreSQL)
+- **Payments:** Stripe
+- **Hosting:** Vercel
+- **Teammates:** v0 & Claude Code
+
+## Initial Setup
+
+### 1. Dependencias
+
+```bash
+npm install
+```
+
+### 2. Setup env vars
+
+Copy the example file
+```bash
+cp env.example .env.local
+```
+
+Fill out the env vars in `.env.local`.
+
+### 3. Supabase Setup
+
+#### Create project:
+1. Go to [supabase.com](https://supabase.com) and create and account
+2. New project
+
+#### API Keys
+1. **Settings > API**
+2. Copy:
+   - `Project URL` → `NEXT_PUBLIC_SUPABASE_URL`
+   - `anon public/publishable` key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `service_role/secret` key → `SUPABASE_SERVICE_ROLE_KEY` (webhooks)
+
+#### Create tables:
+1. Go to **SQL Editor** within the Supabase project
+2. Copy `supabase/schema.sql`
+3. Click **Run**
+
+#### Storage for images
+A bucket called  `animals` was created with the schema. To upload images:
+1. Go to **Storage** in Supabase
+2. Enter the  bucket `animals`
+3. Upload the pictures
+4. Copy the public URL, to be used in the field `primary_image_url`
+
+### 4. Setup Stripe
+
+#### Create account:
+1. Go to [stripe.com](https://stripe.com) y create an account
+
+#### API keys:
+1. Go to **Developers > API keys**
+2. Copy:
+   - `Publishable key` → `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+   - `Secret key` → `STRIPE_SECRET_KEY`
+
+#### Configure Webhook (for prod):
+1. Go to **Developers > Webhooks**
+2. Create an endpoint: `https://domain.com/api/webhook/stripe`
+3. Select events: `checkout.session.completed`, `payment_intent.payment_failed`
+4. Copy the **Signing secret** → `STRIPE_WEBHOOK_SECRET`
+
+### 5. Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/                    # Rutas de Next.js App Router
+│   ├── api/               # API Routes
+│   │   ├── checkout/      # Stripe checkout
+│   │   └── webhook/       # Webhooks
+│   ├── donaciones/        # Página de donaciones
+│   ├── angeles/[id]/       # Perfil de animal
+│   └── ...
+├── components/             # Componentes React
+├── lib/                    # Utilidades y configuración
+├── public/                 # Archivos estáticos
+│   ├── images/            # Logo, hero, og-image
+│   └── videos/            # Videos del hero
+├── supabase/               # Schema SQL
+└── types/                  # TypeScript types
+```
 
-## Learn More
+## Next steps
 
-To learn more about Next.js, take a look at the following resources:
+- [ ] Google forms for adoption
+- [ ] AI Matching (BAML maybe?)
+- [ ] Multi-language (Español/Inglés)
+- [ ] "Street dogs" section
+- [ ] Success stories
+- [ ] Admin dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contact me for questions.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ for the beautiful angels from El Salto, Jalisco.

@@ -19,7 +19,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Mediano",
       temperament: ["Juguetón", "Cariñoso"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: [
         "Energía compatible con tu estilo de vida",
         "Bueno con niños y otros perros",
@@ -34,7 +34,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Pequeño",
       temperament: ["Tranquila", "Dulce"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: [
         "Personalidad tranquila perfecta para ti",
         "Tamaño ideal para tu espacio",
@@ -49,7 +49,7 @@ const matchDogs = (answers: Record<number, string | string[]>) => {
       size: "Pequeño",
       temperament: ["Energética", "Juguetona"],
       image: "/placeholder.svg?height=400&width=400",
-      location: "Saltillo, Jalisco",
+      location: "El Salto, Jalisco",
       matchReasons: ["Joven y adaptable", "Personalidad juguetona", "Compatible con tu experiencia"],
     },
   ]
@@ -128,13 +128,13 @@ export function MatchingResults({
 
                   <div className="flex gap-3 pt-2">
                     <Button className="gap-2" asChild>
-                      <Link href={`/perros/${dog.id}`}>
+                      <Link href={`/angeles/${dog.id}`}>
                         <Heart className="h-4 w-4" />
                         Ver perfil completo
                       </Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <a href="https://wa.me/526532850961" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/525532850961" target="_blank" rel="noopener noreferrer">
                         Contactar
                       </a>
                     </Button>
@@ -152,7 +152,7 @@ export function MatchingResults({
           Reintentar cuestionario
         </Button>
         <Button asChild>
-          <Link href="/#perros">Ver todos los perritos</Link>
+          <Link href="/#angeles">Ver todos los ángeles</Link>
         </Button>
       </div>
     </div>

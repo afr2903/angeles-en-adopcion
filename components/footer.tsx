@@ -10,10 +10,10 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-xl font-bold">
               <Heart className="h-6 w-6 fill-primary text-primary" />
-              <span>Angeles Adopción</span>
+              <span>Ángeles en Adopción</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Rescate y rehabilitación de perritos en Saltillo, Jalisco. Cambiando vidas desde 2020.
+              Rescate y rehabilitación de perritos en El Salto, Jalisco. Cambiando vidas desde 2020.
             </p>
           </div>
 
@@ -22,13 +22,13 @@ export function Footer() {
             <h3 className="font-semibold">Enlaces rápidos</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/#perros" className="text-muted-foreground hover:text-primary">
-                  Perritos disponibles
+                <Link href="/#angeles" className="text-muted-foreground hover:text-primary">
+                  Ángeles disponibles
                 </Link>
               </li>
               <li>
                 <Link href="/matching" className="text-muted-foreground hover:text-primary">
-                  Find Your Match
+                  Encuentra tu Match
                 </Link>
               </li>
               <li>
@@ -50,13 +50,13 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <a href="https://wa.me/526532850961" className="hover:text-primary">
+                <a href="https://wa.me/525532850961" className="hover:text-primary">
                   653 285 0961
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Saltillo, Jalisco</span>
+                <span>El Salto, Jalisco</span>
               </li>
               <li className="flex items-center gap-2">
                 <Instagram className="h-4 w-4" />

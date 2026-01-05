@@ -12,8 +12,8 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", label: "Inicio", icon: Home },
-    { href: "/#perros", label: "Ángeles", icon: Heart },
-    { href: "/matching", label: "Find Your Match", icon: Sparkles },
+    { href: "/#angeles", label: "Ángeles", icon: Heart },
+    { href: "/matching", label: "Encuentra tu Match", icon: Sparkles },
     { href: "/apadrinar", label: "Apadrinar", icon: Heart },
     { href: "/donaciones", label: "Donar", icon: HandHeart },
     { href: "/contacto", label: "Contacto", icon: Phone },
@@ -25,14 +25,14 @@ export function Navigation() {
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-10 w-10">
             <Image
-              src="/placeholder.svg?height=40&width=40"
-              alt="Angeles Adopción Logo"
+              src="/images/logo.png"
+              alt="Ángeles en Adopción Logo"
               width={40}
               height={40}
               className="object-contain"
             />
           </div>
-          <span className="text-lg font-bold">Angeles Adopción</span>
+          <span className="text-lg font-bold">Ángeles en Adopción</span>
         </Link>
 
         {/* Desktop Navigation */}

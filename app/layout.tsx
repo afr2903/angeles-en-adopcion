@@ -20,26 +20,20 @@ const lato = Lato({
 })
 
 export const metadata: Metadata = {
-  title: "Angeles Adopción - Rescate y Adopción de Perros en Jalisco",
+  title: "Ángeles en Adopción - Rescate y Adopción de Animales en Jalisco",
   description:
-    "Rescate y rehabilitación de perritos en Saltillo, Jalisco. Más de 65 perros esperan encontrar un hogar lleno de amor. Adopta, dona o ayuda a cambiar vidas.",
-  generator: "v0.app",
+    "Rescate y rehabilitación de ángeles en El Salto, Jalisco. Más de 80 animales esperan encontrar un hogar lleno de amor. Adopta, dona o ayuda a cambiar vidas.",
+  keywords: ["adopción", "rescate", "perros", "gatos", "Jalisco", "El Salto", "animales", "refugio"],
+  openGraph: {
+    title: "Ángeles en Adopción",
+    description: "Adopta un ángel, cambia una vida. Más de 80 animales rescatados esperan un hogar.",
+    type: "website",
+    locale: "es_MX",
+    siteName: "Ángeles en Adopción",
+  },
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
   },
 }
 
