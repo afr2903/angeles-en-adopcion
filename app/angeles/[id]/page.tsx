@@ -8,64 +8,53 @@ import { Heart, MapPin, Calendar, Ruler, Users, Stethoscope, MessageCircle, Arro
 import Link from "next/link"
 import { ShareButton } from "@/components/share-button"
 import { AdoptionForm } from "@/components/adoption-form"
+import { createClient } from "@supabase/supabase-js"
+import type { Database, Animal } from "@/types/database"
+import { formatAge, translateSize, translateGender } from "@/lib/animals"
 
-// Mock data - will be replaced with database
-const mockDogs = [
-  {
-    id: "1",
-    name: "Romeo",
-    age: "2 años",
-    size: "Mediano",
-    gender: "Macho",
-    weight: "15 kg",
-    temperament: ["Juguetón", "Cariñoso", "Sociable"],
-    image: "/placeholder.svg?height=600&width=600",
-    images: [
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
-    ],
-    location: "El Salto, Jalisco",
-    urgent: false,
-    story:
-      "Romeo llegó a nosotros hace 6 meses después de ser rescatado de la calle. A pesar de su pasado difícil, es un perrito increíblemente amoroso que adora jugar con otros perros y recibir cariño de las personas. Le encanta correr en el jardín y es muy obediente.",
-    goodWith: {
-      kids: true,
-      dogs: true,
-      cats: false,
-    },
-    medicalInfo: {
-      vaccinated: true,
-      sterilized: true,
-      dewormed: true,
-      microchipped: false,
-      specialNeeds: "Ninguna",
-    },
-    adoptionRequirements: [
-      "Hogar con jardín o espacio para ejercitarse",
-      "Compromiso de tiempo para juego y ejercicio diario",
-      "Experiencia previa con perros (preferible)",
-      "Disposición para entrenamiento continuo",
-    ],
-  },
-]
+async function getAnimal(id: string): Promise<Animal | null> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  
+  if (!supabaseUrl || !supabaseKey) {
+    console.error('Supabase environment variables not configured')
+    return null
+  }
+
+  const supabase = createClient<Database>(supabaseUrl, supabaseKey)
+  
+  const { data, error } = await supabase
+    .from("animals")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  if (error || !data) {
+    return null
+  }
+
+  return data as Animal
+}
 
 export default async function DogProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const dog = mockDogs.find((d) => d.id === id)
+  const animal = await getAnimal(id)
 
-  if (!dog) {
+  if (!animal) {
     notFound()
   }
+
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "526532850961"
+  const whatsappMessage = encodeURIComponent(`Hola! Me interesa adoptar a ${animal.name}`)
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container px-4 py-8">
         {/* Back button */}
         <Button variant="ghost" className="mb-6 gap-2" asChild>
-          <Link href="/#perros">
+          <Link href="/#angeles">
             <ArrowLeft className="h-4 w-4" />
-            Volver a perritos
+            Volver a ángeles
           </Link>
         </Button>
 
@@ -73,18 +62,32 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
           {/* Image Gallery */}
           <div className="space-y-4">
             <div className="relative aspect-square overflow-hidden rounded-lg">
-              <Image src={dog.image || "/placeholder.svg"} alt={dog.name} fill className="object-cover" />
-              {dog.urgent && <Badge className="absolute right-4 top-4 bg-destructive text-lg">Adopción Urgente</Badge>}
+              <Image 
+                src={animal.primary_image_url || "/placeholder.svg?height=600&width=600"} 
+                alt={animal.name} 
+                fill 
+                className="object-cover" 
+              />
+              {animal.is_urgent && (
+                <Badge className="absolute right-4 top-4 bg-destructive text-lg">Adopción Urgente</Badge>
+              )}
             </div>
 
             {/* Thumbnail Gallery */}
-            <div className="grid grid-cols-3 gap-4">
-              {dog.images.map((img, idx) => (
-                <div key={idx} className="relative aspect-square overflow-hidden rounded-lg">
-                  <Image src={img || "/placeholder.svg"} alt={`${dog.name} ${idx + 1}`} fill className="object-cover" />
-                </div>
-              ))}
-            </div>
+            {animal.additional_images && animal.additional_images.length > 0 && (
+              <div className="grid grid-cols-3 gap-4">
+                {animal.additional_images.map((img, idx) => (
+                  <div key={idx} className="relative aspect-square overflow-hidden rounded-lg">
+                    <Image 
+                      src={img || "/placeholder.svg"} 
+                      alt={`${animal.name} ${idx + 1}`} 
+                      fill 
+                      className="object-cover" 
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Dog Info */}
@@ -92,22 +95,22 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <h1 className="text-balance text-4xl font-bold">{dog.name}</h1>
+                  <h1 className="text-balance text-4xl font-bold">{animal.name}</h1>
                   <div className="mt-2 flex items-center gap-2 text-muted-foreground">
                     <MapPin className="h-4 w-4" />
-                    <span>{dog.location}</span>
+                    <span>{animal.location}</span>
                   </div>
                 </div>
                 <div className="flex gap-2">
                   <Button size="icon" variant="outline">
                     <Heart className="h-5 w-5" />
                   </Button>
-                  <ShareButton dogName={dog.name} />
+                  <ShareButton dogName={animal.name} />
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-2">
-                {dog.temperament.map((trait) => (
+                {animal.temperament_tags.map((trait) => (
                   <Badge key={trait} variant="secondary" className="text-sm">
                     {trait}
                   </Badge>
@@ -122,7 +125,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                   <Calendar className="h-5 w-5 text-primary" />
                   <div>
                     <div className="text-sm text-muted-foreground">Edad</div>
-                    <div className="font-semibold">{dog.age}</div>
+                    <div className="font-semibold">{formatAge(animal.age_years, animal.age_months)}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -132,7 +135,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                   <Ruler className="h-5 w-5 text-primary" />
                   <div>
                     <div className="text-sm text-muted-foreground">Tamaño</div>
-                    <div className="font-semibold">{dog.size}</div>
+                    <div className="font-semibold">{translateSize(animal.size)}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -142,7 +145,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                   <Users className="h-5 w-5 text-primary" />
                   <div>
                     <div className="text-sm text-muted-foreground">Género</div>
-                    <div className="font-semibold">{dog.gender}</div>
+                    <div className="font-semibold">{translateGender(animal.gender)}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -152,7 +155,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                   <Stethoscope className="h-5 w-5 text-primary" />
                   <div>
                     <div className="text-sm text-muted-foreground">Peso</div>
-                    <div className="font-semibold">{dog.weight}</div>
+                    <div className="font-semibold">{animal.weight_kg ? `${animal.weight_kg} kg` : 'No registrado'}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -165,7 +168,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                 Solicitar adopción
               </Button>
               <Button size="lg" variant="outline" className="w-full gap-2 bg-transparent" asChild>
-                <a href="https://wa.me/526532850961" target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" />
                   Contactar por WhatsApp
                 </a>
@@ -178,12 +181,16 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
           {/* Story */}
           <div className="lg:col-span-2 space-y-8">
-            <Card>
-              <CardContent className="p-6 space-y-4">
-                <h2 className="text-2xl font-bold">La historia de {dog.name}</h2>
-                <p className="text-pretty leading-relaxed text-muted-foreground">{dog.story}</p>
-              </CardContent>
-            </Card>
+            {(animal.story || animal.description) && (
+              <Card>
+                <CardContent className="p-6 space-y-4">
+                  <h2 className="text-2xl font-bold">La historia de {animal.name}</h2>
+                  <p className="text-pretty leading-relaxed text-muted-foreground">
+                    {animal.story || animal.description}
+                  </p>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Good With */}
             <Card>
@@ -192,37 +199,43 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`rounded-full p-2 ${dog.goodWith.kids ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
+                      className={`rounded-full p-2 ${animal.good_with_kids ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
                     >
                       <Users className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="font-semibold">Niños</div>
-                      <div className="text-sm text-muted-foreground">{dog.goodWith.kids ? "Sí" : "No"}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {animal.good_with_kids === null ? "No evaluado" : animal.good_with_kids ? "Sí" : "No"}
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <div
-                      className={`rounded-full p-2 ${dog.goodWith.dogs ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
+                      className={`rounded-full p-2 ${animal.good_with_dogs ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
                     >
                       <Heart className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="font-semibold">Otros perros</div>
-                      <div className="text-sm text-muted-foreground">{dog.goodWith.dogs ? "Sí" : "No"}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {animal.good_with_dogs === null ? "No evaluado" : animal.good_with_dogs ? "Sí" : "No"}
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <div
-                      className={`rounded-full p-2 ${dog.goodWith.cats ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
+                      className={`rounded-full p-2 ${animal.good_with_cats ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
                     >
                       <Heart className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="font-semibold">Gatos</div>
-                      <div className="text-sm text-muted-foreground">{dog.goodWith.cats ? "Sí" : "No"}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {animal.good_with_cats === null ? "No evaluado" : animal.good_with_cats ? "Sí" : "No"}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -235,38 +248,36 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
                 <h2 className="text-2xl font-bold">Información médica</h2>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="flex items-center gap-2">
-                    <div className={`h-2 w-2 rounded-full ${dog.medicalInfo.vaccinated ? "bg-primary" : "bg-muted"}`} />
-                    <span className={dog.medicalInfo.vaccinated ? "" : "text-muted-foreground"}>
-                      {dog.medicalInfo.vaccinated ? "Vacunado" : "No vacunado"}
+                    <div className={`h-2 w-2 rounded-full ${animal.is_vaccinated ? "bg-primary" : "bg-muted"}`} />
+                    <span className={animal.is_vaccinated ? "" : "text-muted-foreground"}>
+                      {animal.is_vaccinated ? "Vacunado" : "No vacunado"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`h-2 w-2 rounded-full ${dog.medicalInfo.sterilized ? "bg-primary" : "bg-muted"}`} />
-                    <span className={dog.medicalInfo.sterilized ? "" : "text-muted-foreground"}>
-                      {dog.medicalInfo.sterilized ? "Esterilizado" : "No esterilizado"}
+                    <div className={`h-2 w-2 rounded-full ${animal.is_sterilized ? "bg-primary" : "bg-muted"}`} />
+                    <span className={animal.is_sterilized ? "" : "text-muted-foreground"}>
+                      {animal.is_sterilized ? "Esterilizado" : "No esterilizado"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className={`h-2 w-2 rounded-full ${dog.medicalInfo.dewormed ? "bg-primary" : "bg-muted"}`} />
-                    <span className={dog.medicalInfo.dewormed ? "" : "text-muted-foreground"}>
-                      {dog.medicalInfo.dewormed ? "Desparasitado" : "No desparasitado"}
+                    <div className={`h-2 w-2 rounded-full ${animal.is_dewormed ? "bg-primary" : "bg-muted"}`} />
+                    <span className={animal.is_dewormed ? "" : "text-muted-foreground"}>
+                      {animal.is_dewormed ? "Desparasitado" : "No desparasitado"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div
-                      className={`h-2 w-2 rounded-full ${dog.medicalInfo.microchipped ? "bg-primary" : "bg-muted"}`}
-                    />
-                    <span className={dog.medicalInfo.microchipped ? "" : "text-muted-foreground"}>
-                      {dog.medicalInfo.microchipped ? "Con microchip" : "Sin microchip"}
+                    <div className={`h-2 w-2 rounded-full ${animal.is_microchipped ? "bg-primary" : "bg-muted"}`} />
+                    <span className={animal.is_microchipped ? "" : "text-muted-foreground"}>
+                      {animal.is_microchipped ? "Con microchip" : "Sin microchip"}
                     </span>
                   </div>
                 </div>
-                {dog.medicalInfo.specialNeeds !== "Ninguna" && (
+                {animal.special_needs && (
                   <>
                     <Separator />
                     <div>
                       <div className="font-semibold">Necesidades especiales:</div>
-                      <div className="text-muted-foreground">{dog.medicalInfo.specialNeeds}</div>
+                      <div className="text-muted-foreground">{animal.special_needs}</div>
                     </div>
                   </>
                 )}
@@ -280,17 +291,27 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
               <CardContent className="p-6 space-y-4">
                 <h2 className="text-2xl font-bold">Requisitos de adopción</h2>
                 <ul className="space-y-3">
-                  {dog.adoptionRequirements.map((req, idx) => (
-                    <li key={idx} className="flex gap-3">
-                      <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                      <span className="text-sm text-muted-foreground">{req}</span>
-                    </li>
-                  ))}
+                  <li className="flex gap-3">
+                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span className="text-sm text-muted-foreground">Ser mayor de edad</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span className="text-sm text-muted-foreground">Enviar video de tu casa/departamento</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span className="text-sm text-muted-foreground">Compromiso de esterilización (si aplica)</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span className="text-sm text-muted-foreground">Seguimiento post-adopción</span>
+                  </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <AdoptionForm dogName={dog.name} dogId={dog.id} />
+            <AdoptionForm dogName={animal.name} dogId={animal.id} />
           </div>
         </div>
       </div>

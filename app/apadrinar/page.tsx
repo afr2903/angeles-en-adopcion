@@ -192,7 +192,7 @@ export default function ApadrinarPage() {
 
             <div className="text-center">
               <Button variant="outline" size="lg" asChild>
-                <Link href="/#perros">Ver todos los ángeles</Link>
+                <Link href="/#angeles">Ver todos los ángeles</Link>
               </Button>
             </div>
           </div>

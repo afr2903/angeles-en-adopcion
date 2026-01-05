@@ -10,7 +10,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-xl font-bold">
               <Heart className="h-6 w-6 fill-primary text-primary" />
-              <span>Angeles Adopción</span>
+              <span>Ángeles en Adopción</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Rescate y rehabilitación de perritos en El Salto, Jalisco. Cambiando vidas desde 2020.
@@ -22,13 +22,13 @@ export function Footer() {
             <h3 className="font-semibold">Enlaces rápidos</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/#perros" className="text-muted-foreground hover:text-primary">
-                  Perritos disponibles
+                <Link href="/#angeles" className="text-muted-foreground hover:text-primary">
+                  Ángeles disponibles
                 </Link>
               </li>
               <li>
                 <Link href="/matching" className="text-muted-foreground hover:text-primary">
-                  Find Your Match
+                  Encuentra tu Match
                 </Link>
               </li>
               <li>

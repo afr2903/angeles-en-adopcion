@@ -128,7 +128,7 @@ export function MatchingResults({
 
                   <div className="flex gap-3 pt-2">
                     <Button className="gap-2" asChild>
-                      <Link href={`/perros/${dog.id}`}>
+                      <Link href={`/angeles/${dog.id}`}>
                         <Heart className="h-4 w-4" />
                         Ver perfil completo
                       </Link>
@@ -152,7 +152,7 @@ export function MatchingResults({
           Reintentar cuestionario
         </Button>
         <Button asChild>
-          <Link href="/#perros">Ver todos los perritos</Link>
+          <Link href="/#angeles">Ver todos los ángeles</Link>
         </Button>
       </div>
     </div>

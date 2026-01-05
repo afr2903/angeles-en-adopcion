@@ -41,7 +41,7 @@ export default function HomePage() {
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center sm:items-center">
               <Button size="lg" className="gap-2 text-lg bg-primary hover:bg-primary/90" asChild>
-                <Link href="#perros">
+                <Link href="#angeles">
                   <Heart className="h-5 w-5" />
                   Ver ángeles disponibles
                 </Link>
@@ -132,7 +132,7 @@ export default function HomePage() {
       </section>
 
       {/* Dog Gallery Section */}
-      <section id="perros" className="bg-muted/30 py-20">
+      <section id="angeles" className="bg-muted/30 py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center space-y-4">
             <h2 className="text-balance text-3xl font-bold sm:text-4xl md:text-5xl">Conoce a nuestros ángeles</h2>
