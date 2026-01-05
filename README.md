@@ -1,3 +1,12 @@
+<p align="center">
+  <picture>
+    <img alt="Angeles en Adopcion logo" src="https://angelesenadopcion.com/images/logo.png" width="150" height="150" style="max-width: 100%;">
+  </picture>
+  <br/>
+  <br/>
+</p>
+
+
 # Ángeles en Adopción 🐾
 
 Website for a pet shelter "Ángeles en Adopción" at El Salto, Jalisco, México.
