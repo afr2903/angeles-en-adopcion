@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   keywords: ["adopción", "rescate", "perros", "gatos", "Jalisco", "El Salto", "animales", "refugio"],
   openGraph: {
     title: "Ángeles en Adopción",
-    description: "Adopta un ángel, cambia una vida. Más de 80 animales rescatados esperan un hogar.",
+    description: "Adopta un ángel, cambia tu vida. Más de 80 animales rescatados esperan un hogar.",
     type: "website",
     locale: "es_MX",
     siteName: "Ángeles en Adopción",

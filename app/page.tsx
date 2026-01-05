@@ -31,7 +31,7 @@ export default function HomePage() {
 
             <h1 className="text-balance text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
               Adopta un ángel,
-              <span className="text-primary"> cambia una vida</span>
+              <span className="text-primary"> cambia tu vida</span>
             </h1>
 
             <p className="text-pretty mx-auto max-w-2xl text-lg text-foreground/70 sm:text-xl md:text-2xl leading-relaxed">
