@@ -44,7 +44,7 @@ export default async function DogProfilePage({ params }: { params: Promise<{ id:
     notFound()
   }
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "526532850961"
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "525532850961"
   const whatsappMessage = encodeURIComponent(`Hola! Me interesa adoptar a ${animal.name}`)
 
   return (

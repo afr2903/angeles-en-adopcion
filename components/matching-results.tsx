@@ -134,7 +134,7 @@ export function MatchingResults({
                       </Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <a href="https://wa.me/526532850961" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/525532850961" target="_blank" rel="noopener noreferrer">
                         Contactar
                       </a>
                     </Button>

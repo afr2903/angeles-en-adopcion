@@ -50,7 +50,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <a href="https://wa.me/526532850961" className="hover:text-primary">
+                <a href="https://wa.me/525532850961" className="hover:text-primary">
                   653 285 0961
                 </a>
               </li>

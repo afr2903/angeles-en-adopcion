@@ -176,7 +176,7 @@ export default function ApadrinarPage() {
                     <p className="text-sm text-muted-foreground">{dog.story}</p>
                     <Button className="w-full" asChild>
                       <a
-                        href={`https://wa.me/526532850961?text=${encodeURIComponent(
+                        href={`https://wa.me/525532850961?text=${encodeURIComponent(
                           `Hola! Me gustaría apadrinar a ${dog.name}`,
                         )}`}
                         target="_blank"
@@ -207,7 +207,7 @@ export default function ApadrinarPage() {
               </p>
               <Button size="lg" asChild>
                 <a
-                  href="https://wa.me/526532850961?text=Hola!%20Quiero%20información%20sobre%20apadrinar%20un%20perrito"
+                  href="https://wa.me/525532850961?text=Hola!%20Quiero%20información%20sobre%20apadrinar%20un%20perrito"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

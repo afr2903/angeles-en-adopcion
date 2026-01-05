@@ -46,7 +46,7 @@ export default function GraciasPage() {
               <p className="text-sm text-muted-foreground">
                 ¿Quieres ayudar más?{" "}
                 <a 
-                  href="https://wa.me/526532850961?text=Hola!%20Acabo%20de%20hacer%20una%20donación%20y%20me%20gustaría%20saber%20cómo%20más%20puedo%20ayudar" 
+                  href="https://wa.me/525532850961?text=Hola!%20Acabo%20de%20hacer%20una%20donación%20y%20me%20gustaría%20saber%20cómo%20más%20puedo%20ayudar" 
                   className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"

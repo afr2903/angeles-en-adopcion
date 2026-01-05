@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export function WhatsAppFloatButton() {
   return (
     <a
-      href="https://wa.me/526532850961"
+      href="https://wa.me/525532850961"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50"
